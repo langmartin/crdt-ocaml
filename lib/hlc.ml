@@ -1,9 +1,16 @@
 type clock = {
-     time : int;
+     time : int64;
      tick : int
 }
 
+let time_ms() =
+  Unix.gettimeofday() |> ( *. ) 1000. |> Int64.of_float
+
+let init system =
+  { time = system; tick = 0 }
+
 let send system local =
+  let open Int64 in
   let logical = max system local.time in
   {
     time = logical;
@@ -15,6 +22,7 @@ let send system local =
   }
 
 let recv system local remote =
+  let open Int64 in
   let logical = max system local.time |> max remote.time in
   {
     time = logical;
@@ -30,10 +38,10 @@ let recv system local remote =
 let parse serialized =
   let open String in
   {
-    time = "0x" ^ sub serialized 0 12 |> int_of_string;
+    time = "0x" ^ sub serialized 0 12 |> Int64.of_string;
     tick = "0x" ^ sub serialized 12 4 |> int_of_string
   }
 
 let sprint clock =
   let open Printf in
-  sprintf "%012x%04x" clock.time clock.tick
+  sprintf "%012Lx%04x" clock.time clock.tick
