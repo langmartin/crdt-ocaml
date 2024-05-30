@@ -1,0 +1,6 @@
+# dune init proj ocaml_crdt
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/lang/.cache/dune/db
+# Workspace root: /Users/lang/langmartin/ocaml_crdt
+# Auto-detected concurrency: 10
