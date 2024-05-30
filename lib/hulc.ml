@@ -1,4 +1,6 @@
-let node_id =
+type serialized = string
+
+let make_node_id =
   Random.bits64
 
 let sprint node_id =
