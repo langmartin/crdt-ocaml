@@ -5,5 +5,6 @@ whatever yet, so this is just some code to evaluate in the repl to
 load the project up.
 
 #+begin_src ocaml
-  #load "unix.cma";; #mod_use "hlc.ml";; #mod_use "hulc.ml";; #mod_use "anti_entropy.ml";;
+   #load "unix.cma";;
+   #mod_use "hlc.ml";; #mod_use "hulc.ml";; #mod_use "anti_entropy.ml";; #mod_use "world.ml";;
 #+end_src

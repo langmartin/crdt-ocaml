@@ -20,6 +20,5 @@ let t_recv remote =
 let ae_put message =
   let {hulc = hulc; key = key; data = data} = message in
   let current = !the_anti_entropy in
-  let put = Anti_entropy.put current in
-  let next = put key hulc data in
+  let next = Anti_entropy.put current key hulc data in
   the_anti_entropy := next; next
