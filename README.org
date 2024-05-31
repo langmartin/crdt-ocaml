@@ -1,0 +1,9 @@
+* Development
+
+I haven't found out how to load the project with merlin or tuareg or
+whatever yet, so this is just some code to evaluate in the repl to
+load the project up.
+
+#+begin_src ocaml
+  #load "unix.cma";; #mod_use "hlc.ml";; #mod_use "hulc.ml";; #mod_use "anti_entropy.ml";;
+#+end_src

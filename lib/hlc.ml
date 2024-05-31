@@ -3,6 +3,8 @@ type clock = {
      tick : int
 }
 
+let zero = { time = 0L; tick = 0 }
+
 let time_ms() =
   Unix.gettimeofday() |> ( *. ) 1000. |> Int64.of_float
 
