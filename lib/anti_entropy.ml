@@ -2,7 +2,8 @@ type key = string
 type box = Hulc.serialized * string
 
 module StringMap = Map.Make(String)
-let make_store() : box StringMap.t = StringMap.empty
+
+let empty : box StringMap.t = StringMap.empty
 
 let get_opt store key =
   match StringMap.find_opt store key with
