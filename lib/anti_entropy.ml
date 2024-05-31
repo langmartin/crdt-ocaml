@@ -1,5 +1,5 @@
 type key = string
-type box = string * string
+type box = Hulc.serialized * string
 
 module StringMap = Map.Make(String)
 let make_store() : box StringMap.t = StringMap.empty
