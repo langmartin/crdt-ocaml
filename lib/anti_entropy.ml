@@ -8,7 +8,7 @@ let empty : box StringMap.t = StringMap.empty
 let get_opt store key =
   match StringMap.find_opt store key with
   | None -> None
-  | Some (_hulc, value) -> value
+  | Some (_hulc, value) -> Some value
 
 let get store key =
   match get_opt store key with

@@ -28,7 +28,7 @@ let recv system local remote =
   let logical = max system local.time |> max remote.time in
   {
     time = logical;
-    tick = 
+    tick =
       if logical == remote.time then
         remote.tick + 1
       else if logical == local.time then
