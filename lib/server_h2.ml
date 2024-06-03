@@ -4,25 +4,23 @@ let reply_text code text reqd =
   let headers = Headers.of_list
       [ "content-length", string_of_int (String.length text) ]
   in
-  Reqd.respond_with_string reqd (Response.create ~headers `Code code) text
+  Reqd.respond_with_string reqd (Response.create ~headers (`Code code)) text
 
 let request_handler _client_address reqd =
   let { Request.meth; target; _ } = Reqd.request reqd in
   match meth with
   | `GET ->
     let path = String.split_on_char '/' target in
-    match path with
-    | ["list" list "item" item] ->
-      match World.ae_get_opt(list ^ item) with
-      | Some value -> reply_text 200 value reqd
-      | None -> reply_text 404 "not found" reqd
+    (match path with
+     | ["list"; list; "item"; item] ->
+       (match World.ae_get_opt(list ^ item) with
+        | Some value -> reply_text 200 value reqd
+        | None -> reply_text 404 "not found" reqd)
+     | _ -> reply_text 404 "not found" reqd)
 
-    | _ ->
-      reply_text 404 "not found" reqd
+  | _ ->
+    reply_text 405 "method not allowed" reqd
 
-    | meth ->
-      reply_text 405 "method not allowed" reqd
-      
 let error_handler _client_address ?request:_ _error start_response =
   let response_body = start_response Headers.empty in
   Body.Writer.write_string

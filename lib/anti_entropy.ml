@@ -6,7 +6,7 @@ module StringMap = Map.Make(String)
 let empty : box StringMap.t = StringMap.empty
 
 let get_opt store key =
-  match StringMap.find_opt store key with
+  match StringMap.find_opt key store with
   | None -> None
   | Some (_hulc, value) -> Some value
 
