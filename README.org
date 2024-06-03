@@ -5,5 +5,7 @@ whatever yet, so this is just some code to evaluate in the repl to
 load the project up.
 
 #+begin_src ocaml
+  #use "topfind";;
+  #directory "/Users/lang/.opam/default/lib/stublibs";;
   #use_output "dune ocaml top";;
 #+end_src
