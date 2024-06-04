@@ -2,4 +2,7 @@
  (name ocaml_crdt)
  (libraries unix h2 h2-lwt-unix capnp))
 
-(include_subdirs unqualified)
+(rule
+ (targets schema.ml schema.mli)
+ (deps ../schema.capnp)
+ (action (run capnp compile %{deps} -o ocaml)))
