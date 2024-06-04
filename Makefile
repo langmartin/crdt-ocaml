@@ -1,12 +1,16 @@
+schema = schema/schema.ml
 sources = $(wildcard lib/*.ml lib/*.mli)
 
 run: build
 	opam exec -- dune exec ocaml_crdt
 
-build: /opt/homebrew/bin/capnp $(sources)
+build: $(sources) $(schema)
 	dune build
 
-deps:
+schema/schema.ml: schema/schema.capnp
+	cd schema; capnp compile $(notdir $<) -o ocaml
+
+deps: /opt/homebrew/bin/capnp
 	dune build
 	opam install . --deps-only
 
