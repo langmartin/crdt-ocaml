@@ -1,3 +1,5 @@
 (library
  (name ocaml_crdt)
- (libraries unix h2 h2-lwt-unix))
+ (libraries unix h2 h2-lwt-unix capnp))
+
+(include_subdirs unqualified)
