@@ -17,6 +17,10 @@ let t_recv remote =
   let next = remote |> Hlc.parse |> recv in
   the_clock := next; Hulc.sprint next self
 
+let ae_get_opt key =
+  let current = !the_anti_entropy in
+  Anti_entropy.get_opt current key
+
 let ae_put message =
   let {hulc = hulc; key = key; data = data} = message in
   let current = !the_anti_entropy in

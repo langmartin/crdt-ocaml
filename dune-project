@@ -19,7 +19,7 @@
  (name ocaml_crdt)
  (synopsis "A short synopsis")
  (description "A longer description")
- (depends ocaml dune unix h2)
+ (depends ocaml dune unix h2 h2-lwt-unix)
  (tags
   (topics "to describe" your project)))
 
