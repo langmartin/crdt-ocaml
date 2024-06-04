@@ -1,4 +1,8 @@
 run:
 	opam exec -- dune exec ocaml_crdt
 
-.PHONEY: run
+deps:
+	dune build
+	opam install . --deps-only
+
+.PHONEY: run deps
