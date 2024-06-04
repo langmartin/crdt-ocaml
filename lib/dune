@@ -5,7 +5,8 @@
   h2
   h2-lwt-unix
   capnp-rpc-lwt
-  capnp-rpc-net))
+  capnp-rpc-net
+  capnp-rpc-unix))
 
 (rule
  (targets schema.ml schema.mli)
