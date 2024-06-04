@@ -14,7 +14,7 @@ depends: [
   "dune" {>= "3.15"}
   "h2"
   "h2-lwt-unix"
-  "capnp"
+  "capnp-rpc-lwt"
   "odoc" {with-doc}
 ]
 build: [
