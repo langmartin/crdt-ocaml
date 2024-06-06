@@ -12,3 +12,5 @@
  (targets schema.ml schema.mli)
  (deps ../schema.capnp)
  (action (run capnp compile %{deps} --src-prefix ../ -o ocaml)))
+
+(include_subdirs qualified)
