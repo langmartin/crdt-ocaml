@@ -22,10 +22,7 @@
  (depends
   ocaml
   dune
-  h2
   h2-lwt-unix
-  depext
-  capnp
   capnp-rpc-lwt)
  (tags
   (topics "to describe" your project)))

@@ -12,10 +12,7 @@ bug-reports: "https://github.com/username/reponame/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.15"}
-  "h2"
   "h2-lwt-unix"
-  "depext"
-  "capnp"
   "capnp-rpc-lwt"
   "odoc" {with-doc}
 ]
@@ -35,5 +32,6 @@ build: [
 ]
 dev-repo: "git+https://github.com/username/reponame.git"
 depexts: [
- ["capnp-rpc-unix"]
+  [ "capnp" "gmp" ]
+    { os-distribution = "macos" }
 ]
