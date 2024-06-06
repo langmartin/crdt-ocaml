@@ -3,7 +3,16 @@
 struct Item {
   key @0 :Text;
   hulc @1 :Data;
-  value @2 :Text;
+
+  union {
+    string {
+      value @2 :Text;
+    }
+
+    long {
+      value @3 :Int64;
+    }
+  }
 }
 
 interface Gossip {
