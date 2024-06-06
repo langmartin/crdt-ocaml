@@ -3,11 +3,11 @@ module Item = Schema.Make(Capnp.BytesMessage)
 
 open Capnp_rpc_lwt
 
-let recv item_msg : string =
+let recv item_msg =
   let open Item.Reader in
   let key = Item.key_get item_msg in
   let hulc = Item.hulc_get item_msg in
-  World.ae_put key hulc item_msg
+  World.ae_put key hulc "item_mesg"
 
 let local =
   let module Gossip = Api.Service.Gossip in
@@ -25,14 +25,14 @@ let local =
 
 module Gossip = Api.Client.Gossip
 
-open Lwt.Infix
-
 let send t key hulc value =
+  let open Lwt.Infix in
   let open Gossip.Send in
+  let open Item in
   let request, params = Capability.Request.create Params.init_pointer in
   let rw = Params.msg_init params in
-  let open Item.Builder in
-  Item.key_set rw key;
-  Item.hulc_set rw hulc;
-  Item.value_set rw value;
+  Builder.Item.key_set rw key;
+  Builder.Item.hulc_set rw hulc;
+  let vrw = Builder.Item.string_init rw in
+  Builder.Item.String.value_set vrw value;
   Capability.call_for_value_exn t method_id request >|= Results.reply_get

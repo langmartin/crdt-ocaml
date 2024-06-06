@@ -5,11 +5,11 @@ struct Item {
   hulc @1 :Data;
 
   union {
-    string {
+    string :group {
       value @2 :Text;
     }
 
-    long {
+    long :group {
       value @3 :Int64;
     }
   }
