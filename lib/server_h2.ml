@@ -28,7 +28,7 @@ let error_handler _client_address ?request:_ _error start_response =
     "error\n";
   Body.Writer.close response_body
 
-let () =
+let start() =
   let connection_handler =
     H2_lwt_unix.Server.create_connection_handler
       ?config:None

@@ -9,7 +9,7 @@ let recv item_msg =
   let hulc = Item.hulc_get item_msg in
   World.ae_put key hulc "item_mesg"
 
-let local =
+let make_local() =
   let module Gossip = Api.Service.Gossip in
   Gossip.local @@
     object inherit Gossip.service

@@ -8,4 +8,5 @@ load the project up.
   #use "topfind";;
   #directory "/Users/lang/.opam/default/lib/stublibs";;
   #use_output "dune ocaml top";;
+  open Ocaml_crdt;;
 #+end_src
