@@ -1,13 +1,12 @@
 sources = $(wildcard lib/*.ml lib/*.mli)
 
-run: build
-	opam exec -- dune exec ocaml_crdt
-
 build: $(sources) schema.capnp
 	dune build
 
+run: build
+	opam exec -- dune exec ocaml_crdt
+
 deps: /opt/homebrew/bin/capnp
-	dune build
 	opam install . --deps-only
 
 /opt/homebrew/bin/capnp:
