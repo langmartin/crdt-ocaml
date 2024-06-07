@@ -6,7 +6,7 @@ build: $(sources) schema.capnp
 run: build
 	opam exec -- dune exec ocaml_crdt
 
-deps: /opt/homebrew/bin/capnp lib/.ocamlinit
+deps: lib/.ocamlinit
 	opam install . --deps-only
 
 /opt/homebrew/bin/capnp:

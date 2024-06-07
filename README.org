@@ -1,12 +1,22 @@
-* Development
+* CRDT Basics
 
-I haven't found out how to load the project with merlin or tuareg or
-whatever yet, so this is just some code to evaluate in the repl to
-load the project up.
+** Overview
 
-#+begin_src ocaml
-  #use "topfind";;
-  #directory "/Users/lang/.opam/default/lib/stublibs";;
-  #use_output "dune ocaml top";;
-  open Ocaml_crdt;;
+- HLC
+- HULC with the addition of a node id
+- LWW map-like CRDTs
+- Anti-entropy
+- Gossip
+- Cap'n proto server and client
+
+** Development
+
+Trying to use the dune defaults to install externals and everything.
+I've got a couple of setup things in the Makefile for now.
+
+- [ ] Reinstall everything from scratch to make sure this setup works
+
+#+begin_src sh
+  make deps
+  make
 #+end_src
