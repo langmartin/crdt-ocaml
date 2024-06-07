@@ -1,4 +1,5 @@
 type key = string
+module Item = Schema.Make(Capnp.BytesMessage)
 type box = Hulc.serialized * string
 
 module StringMap = Map.Make(String)
