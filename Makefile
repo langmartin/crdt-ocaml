@@ -1,19 +1,19 @@
 sources = $(wildcard lib/*.ml lib/*.mli)
 
-build: $(sources) schema.capnp lib/.ocamlinit
+build: $(sources) schema.capnp
 	dune build
 
 run: build
 	opam exec -- dune exec ocaml_crdt
 
-deps: /opt/homebrew/bin/capnp
+deps: /opt/homebrew/bin/capnp lib/.ocamlinit
 	opam install . --deps-only
 
 /opt/homebrew/bin/capnp:
 	brew install capnp
 
-.ocamlinit: .ocamlinit-template Makefile
-	eval echo `cat $^` > $@
+.ocamlinit: .ocamlinit-template
+	sed 's|$$HOME|$(HOME)|g' $^ > $@
 
 lib/.ocamlinit: .ocamlinit
 	(cd lib; ln -sf ../.ocamlinit)

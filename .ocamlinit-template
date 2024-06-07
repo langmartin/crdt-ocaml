@@ -1,4 +1,4 @@
 #use "topfind";;
-#directory "/$HOME/.opam/default/lib/stublibs";;
+#directory "$HOME/.opam/default/lib/stublibs";;
 #use_output "dune ocaml top";;
 open Ocaml_crdt;;
