@@ -14,7 +14,7 @@ let request_handler _client_address reqd =
     (match path with
      | ["list"; list; "item"; item] ->
        (match World.ae_get_opt(list ^ item) with
-        | Some value -> reply_text 200 value reqd
+        | Some value -> reply_text 200 (Gossip_capnp.to_string value) reqd
         | None -> reply_text 404 "not found" reqd)
      | _ -> reply_text 404 "not found" reqd)
 
@@ -28,7 +28,7 @@ let error_handler _client_address ?request:_ _error start_response =
     "error\n";
   Body.Writer.close response_body
 
-let () =
+let start() =
   let connection_handler =
     H2_lwt_unix.Server.create_connection_handler
       ?config:None

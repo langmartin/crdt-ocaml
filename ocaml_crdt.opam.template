@@ -1,0 +1,4 @@
+depexts: [
+  [ "capnp" "gmp" ]
+    { os-distribution = "macos" }
+]
