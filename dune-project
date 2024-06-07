@@ -23,7 +23,8 @@
   ocaml
   dune
   h2-lwt-unix
-  capnp-rpc-lwt)
+  capnp-rpc-lwt
+  cmdliner)
  (tags
   (topics "to describe" your project)))
 
