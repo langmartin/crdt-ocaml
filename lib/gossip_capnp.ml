@@ -3,11 +3,19 @@ module Item = Schema.Make(Capnp.BytesMessage)
 
 open Capnp_rpc_lwt
 
-let recv item_msg =
+let to_string item =
   let open Item.Reader in
-  let key = Item.key_get item_msg in
-  let hulc = Item.hulc_get item_msg in
-  World.ae_put key hulc "item_mesg"
+  let key = Item.key_get item in
+  match Item.get item with
+  | Item.String s -> Printf.sprintf "%s: %s" key (Item.String.value_get s)
+  | Item.Long n -> Printf.sprintf "%s: %Ld" key (Item.Long.value_get n)
+  | Undefined _ -> key ^ ":"
+
+let recv item =
+  let open Item.Reader in
+  let key = Item.key_get item in
+  let hulc = Item.hulc_get item in
+  World.ae_put key hulc item
 
 let make_local() =
   let module Gossip = Api.Service.Gossip in

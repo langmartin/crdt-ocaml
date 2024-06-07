@@ -1,6 +1,6 @@
 type key = string
 module Item = Schema.Make(Capnp.BytesMessage)
-type box = Hulc.serialized * string
+type box = Hulc.serialized * Item.Reader.Item.t
 
 module StringMap = Map.Make(String)
 
