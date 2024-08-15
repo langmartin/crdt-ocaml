@@ -20,11 +20,14 @@
  (synopsis "A short synopsis")
  (description "A longer description")
  (depends
-  ocaml
+  alcotest
+  base64
+  capnp-rpc-lwt
+  checkseum
+  cmdliner
   dune
   h2-lwt-unix
-  capnp-rpc-lwt
-  cmdliner)
+  ocaml)
  (tags
   (topics "to describe" your project)))
 

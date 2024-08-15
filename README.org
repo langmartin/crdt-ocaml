@@ -21,8 +21,8 @@ I've got a couple of setup things in the Makefile for now.
   make
 #+end_src
 
+- https://cs3110.github.io/textbook/chapters/modules/toplevel.html
 - https://github.com/ocaml-community/utop
-- https://dune.readthedocs.io/en/stable/howto/toplevel.html
 
 For emacs, I think ~utop~ is the most straightforward way to go.
 Here's what I have now:

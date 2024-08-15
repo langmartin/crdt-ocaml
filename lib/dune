@@ -1,12 +1,14 @@
 (library
  (name ocaml_crdt)
  (libraries
-  unix
-  h2
-  h2-lwt-unix
+  base64
   capnp-rpc-lwt
   capnp-rpc-net
-  capnp-rpc-unix))
+  capnp-rpc-unix
+  checkseum
+  h2
+  h2-lwt-unix
+  unix))
 
 (rule
  (targets schema.ml schema.mli)
