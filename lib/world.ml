@@ -21,5 +21,9 @@ let ae_put key hulc data =
   let current = !the_anti_entropy in
   (* let ( is_fresh, next ) = Anti_entropy.put_fresh current key hulc data in *)
   let next = Anti_entropy.put current key hulc data in
-  the_anti_entropy := next;
+  if not (next == current) then
+    the_anti_entropy := next;
   true
+
+(* let ae_store key hulc data = *)
+(*   Sqlite3 *)

@@ -1,4 +1,4 @@
 depexts: [
-  [ "capnp" "gmp" ]
+  [ "capnp" "gmp" "sqlite" ]
     { os-distribution = "macos" }
 ]

@@ -25,6 +25,8 @@ let is_fresh key hulc store =
   | Some(prev, _) ->
      use_next hulc prev
 
+type ('a) result = Updated of 'a | Unchanged of 'a
+
 let put store key hulc value =
   let open StringMap in
   match find_opt key store with

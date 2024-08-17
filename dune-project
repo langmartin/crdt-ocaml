@@ -27,7 +27,8 @@
   cmdliner
   dune
   h2-lwt-unix
-  ocaml)
+  ocaml
+  sqlite3)
  (tags
   (topics "to describe" your project)))
 

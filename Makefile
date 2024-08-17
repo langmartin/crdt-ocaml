@@ -9,16 +9,13 @@ test: build
 run: build
 	opam exec -- dune exec ocaml_crdt
 
-deps: /opt/homebrew/bin/capnp
+deps: /opt/homebrew/bin/capnp lib/.ocamlinit
 	opam install . --deps-only
 
 /opt/homebrew/bin/capnp:
 	brew install capnp
 
-# .ocamlinit: .ocamlinit-template
-# 	sed 's|$$HOME|$(HOME)|g' $^ > $@
-
-# lib/.ocamlinit: .ocamlinit
-# 	(cd lib; ln -sf ../.ocamlinit)
+lib/.ocamlinit:
+	echo 'open Ocaml_crdt;;' > $@
 
 .PHONEY: run build deps
