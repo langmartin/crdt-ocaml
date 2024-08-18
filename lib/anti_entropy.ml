@@ -1,6 +1,5 @@
 type key = string
-module Item = Schema.Make(Capnp.BytesMessage)
-type box = Hulc.serialized * Item.Reader.Item.t
+type box = Hulc.serialized * Item.value
 
 module StringMap = Map.Make(String)
 
@@ -24,8 +23,6 @@ let is_fresh key hulc store =
   | None -> true
   | Some(prev, _) ->
      use_next hulc prev
-
-type ('a) result = Updated of 'a | Unchanged of 'a
 
 let put store key hulc value =
   let open StringMap in

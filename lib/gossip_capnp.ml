@@ -1,10 +1,9 @@
 module Api = Schema.MakeRPC(Capnp_rpc_lwt)
-module Item = Schema.Make(Capnp.BytesMessage)
 
 open Capnp_rpc_lwt
 
 let to_string item =
-  let open Item.Reader in
+  let open Item.Item.Reader in
   let key = Item.key_get item in
   match Item.get item with
   | Item.String s -> Printf.sprintf "%s: %s" key (Item.String.value_get s)
@@ -12,10 +11,10 @@ let to_string item =
   | Undefined _ -> key ^ ":"
 
 let recv item =
-  let open Item.Reader in
-  let key = Item.key_get item in
-  let hulc = Item.hulc_get item in
-  World.ae_put key hulc item
+  let key = Item.key_of item in
+  let hulc = Item.hulc_of item in
+  let value = Item.value_of item in
+  World.ae_put key hulc value
 
 let make_local() =
   let module Gossip = Api.Service.Gossip in
@@ -36,11 +35,16 @@ module Gossip = Api.Client.Gossip
 let send t key hulc value =
   let open Lwt.Infix in
   let open Gossip.Send in
-  let open Item in
   let request, params = Capability.Request.create Params.init_pointer in
+
+  (* We build the item right inline, not sure if it should move elsewhere *)
   let rw = Params.msg_init params in
-  Builder.Item.key_set rw key;
-  Builder.Item.hulc_set rw hulc;
-  let vrw = Builder.Item.string_init rw in
-  Builder.Item.String.value_set vrw value;
+  let open Item.Item.Builder.Item in
+  key_set rw key;
+  hulc_set rw hulc;
+  (match value with
+  | Item.String s -> String.value_set (string_init rw) s;
+  | Item.Long l -> Long.value_set (long_init rw) l;
+  | Item.None -> ());
+
   Capability.call_for_value_exn t method_id request >|= Results.reply_get

@@ -2,6 +2,9 @@ let self = Node_id.make_id()
 let the_clock = ref Hlc.zero
 let the_anti_entropy = ref Anti_entropy.empty
 
+let the_db = Sqlite.db_init()
+let the_item_q = Sqlite.store_item_query the_db
+
 let t_send() =
   let next = !the_clock |> Hlc.(time_ms() |> send) in
   the_clock := next;
@@ -19,11 +22,8 @@ let ae_get_opt key =
 
 let ae_put key hulc data =
   let current = !the_anti_entropy in
-  (* let ( is_fresh, next ) = Anti_entropy.put_fresh current key hulc data in *)
   let next = Anti_entropy.put current key hulc data in
   if not (next == current) then
+    Sqlite.store_item key hulc data the_item_q;
     the_anti_entropy := next;
   true
-
-(* let ae_store key hulc data = *)
-(*   Sqlite3 *)

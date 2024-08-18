@@ -14,7 +14,7 @@ let request_handler _client_address reqd =
     (match path with
      | ["list"; list; "item"; item] ->
        (match World.ae_get_opt(list ^ item) with
-        | Some value -> reply_text 200 (Gossip_capnp.to_string value) reqd
+        | Some value -> reply_text 200 (Item.value_str value) reqd
         | None -> reply_text 404 "not found" reqd)
      | _ -> reply_text 404 "not found" reqd)
 

@@ -8,6 +8,7 @@
   checkseum
   h2
   h2-lwt-unix
+  sqlite3
   unix))
 
 (rule
