@@ -22,6 +22,7 @@
  (depends
   alcotest
   base64
+  capnp-rpc-unix
   capnp-rpc-lwt
   checkseum
   cmdliner

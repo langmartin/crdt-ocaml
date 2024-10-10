@@ -12,6 +12,7 @@ bug-reports: "https://github.com/username/reponame/issues"
 depends: [
   "alcotest"
   "base64"
+  "capnp-rpc-unix"
   "capnp-rpc-lwt"
   "checkseum"
   "cmdliner"

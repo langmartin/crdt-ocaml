@@ -1,7 +1,7 @@
 sources = $(wildcard lib/*.ml lib/*.mli)
 
 build: $(sources) schema.capnp
-	dune build
+	dune build || cat .build-error-hints.txt 1>&2
 
 test: build
 	dune runtest
